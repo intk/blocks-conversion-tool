@@ -65,7 +65,6 @@ const blockFromElement = (el, defaultTextBlock, href) => {
   let button = el.querySelector('.text-button');
   if (button) {
     console.log(button.className);
-    console.log('this is it !!!!!');
     raw = buttonBlock(el);
     return raw;
   }
