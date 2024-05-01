@@ -95,16 +95,41 @@ const videoBlock = (elem) => {
   return block;
 };
 
+const buttonBlock = (elem) => {
+  const block = {
+    '@type': '__button',
+    title: elem.textContent,
+    inneralign: 'left',
+  };
+
+  const link = elem.querySelector('a');
+  if (link && link.href) {
+    block.href = [
+      {
+        '@id': link.href,
+        Title: link.textContent,
+        title: link.textContent,
+        Description: '',
+        hasPreviewImage: null,
+      },
+    ];
+  }
+
+  return block;
+};
+
 const elementsWithConverters = {
   IMG: imageBlock,
   VIDEO: videoBlock,
   IFRAME: iframeBlock,
+  BUTTON: buttonBlock,
 };
 
 export {
   iframeBlock,
   imageBlock,
   videoBlock,
+  buttonBlock,
   getYTVideoId,
   elementsWithConverters,
 };

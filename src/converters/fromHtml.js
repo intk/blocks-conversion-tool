@@ -1,5 +1,5 @@
 import jsdom from 'jsdom';
-import { iframeBlock, imageBlock, videoBlock } from './blocks.js';
+import { buttonBlock, iframeBlock, imageBlock, videoBlock } from './blocks.js';
 import { draftTableBlock, draftTextBlock } from './draftjs.js';
 import { slateTableBlock, slateTextBlock } from './slate.js';
 import {
@@ -61,6 +61,15 @@ const blockFromElement = (el, defaultTextBlock, href) => {
     textBlock = draftTextBlock;
   }
   let raw = {};
+
+  let button = el.querySelector('.text-button');
+  if (button) {
+    console.log(button.className);
+    console.log('this is it !!!!!');
+    raw = buttonBlock(el);
+    return raw;
+  }
+
   switch (el.tagName) {
     case 'IMG':
       raw = imageBlock(el, href);
