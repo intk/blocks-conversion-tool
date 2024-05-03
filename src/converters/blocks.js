@@ -36,9 +36,14 @@ const imageBlock = (elem, href) => {
       block.size = 'l';
       break;
   }
-
   const scale = scaleFromUrl(elem.src);
-  if (scale !== null) {
+
+  if (
+    elem.className.includes('WACImage') ||
+    elem.className.includes('image-inline')
+  ) {
+    block.size = 'm';
+  } else if (scale !== null) {
     switch (scale) {
       case 'large':
         block.size = 'l';
