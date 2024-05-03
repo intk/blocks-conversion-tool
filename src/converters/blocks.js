@@ -123,6 +123,16 @@ const buttonBlock = (elem) => {
   return block;
 };
 
+const discreetBlock = (elem) => {
+  console.log('inside the discreet block');
+  const block = {
+    '@type': 'discreetBlock',
+    text: elem.innerHTML,
+  };
+
+  return block;
+};
+
 const elementsWithConverters = {
   IMG: imageBlock,
   VIDEO: videoBlock,
@@ -136,5 +146,6 @@ export {
   videoBlock,
   buttonBlock,
   getYTVideoId,
+  discreetBlock,
   elementsWithConverters,
 };

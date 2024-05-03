@@ -1,5 +1,11 @@
 import jsdom from 'jsdom';
-import { buttonBlock, iframeBlock, imageBlock, videoBlock } from './blocks.js';
+import {
+  buttonBlock,
+  iframeBlock,
+  imageBlock,
+  videoBlock,
+  discreetBlock,
+} from './blocks.js';
 import { draftTableBlock, draftTextBlock } from './draftjs.js';
 import { slateTableBlock, slateTextBlock } from './slate.js';
 import {
@@ -12,6 +18,8 @@ import {
 const { JSDOM } = jsdom;
 
 const dom = new JSDOM();
+const document = dom.window.document;
+
 const DOMParser = dom.window.DOMParser;
 const parser = new DOMParser();
 
@@ -66,6 +74,13 @@ const blockFromElement = (el, defaultTextBlock, href) => {
   if (button) {
     console.log(button.className);
     raw = buttonBlock(el);
+    return raw;
+  }
+
+  const discreet = el.querySelector('.discreet');
+  if (discreet) {
+    console.log('this is a discreet block');
+    raw = discreetBlock(el);
     return raw;
   }
 
