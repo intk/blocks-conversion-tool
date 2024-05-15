@@ -5,6 +5,7 @@ import {
   imageBlock,
   videoBlock,
   discreetBlock,
+  calloutBlock,
 } from './blocks.js';
 import { draftTableBlock, draftTextBlock } from './draftjs.js';
 import { slateTableBlock, slateTextBlock } from './slate.js';
@@ -30,6 +31,7 @@ const elementsWithConverters = ['IMG', 'VIDEO', 'TABLE', 'IFRAME'];
 const elementsShouldHaveText = [
   'B',
   'BLOCKQUOTE',
+  'CALLOUT',
   'BODY',
   'CODE',
   'DEL',
@@ -77,6 +79,16 @@ const blockFromElement = (el, defaultTextBlock, href) => {
     return raw;
   }
 
+  const parag = el.querySelector('p');
+  if (parag) {
+    const images = parag.querySelectorAll('img');
+    if (images.length > 0) {
+      console.log(images.length);
+      if (images.length > 1) {
+        console.log('found you');
+      }
+    }
+  }
   const discreet = el.querySelector('.discreet');
   if (discreet) {
     raw = discreetBlock(el);
@@ -95,6 +107,9 @@ const blockFromElement = (el, defaultTextBlock, href) => {
       break;
     case 'IFRAME':
       raw = iframeBlock(el);
+      break;
+    case 'CALLOUT':
+      raw = calloutBlock(el);
       break;
     default:
       raw = textBlock(el);

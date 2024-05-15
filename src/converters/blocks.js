@@ -132,6 +132,15 @@ const discreetBlock = (elem) => {
   return block;
 };
 
+const calloutBlock = (elem) => {
+  const block = {
+    '@type': 'calloutBlock',
+    text: elem.innerHTML,
+  };
+
+  return block;
+};
+
 const elementsWithConverters = {
   IMG: imageBlock,
   VIDEO: videoBlock,
@@ -146,5 +155,6 @@ export {
   buttonBlock,
   getYTVideoId,
   discreetBlock,
+  calloutBlock,
   elementsWithConverters,
 };
