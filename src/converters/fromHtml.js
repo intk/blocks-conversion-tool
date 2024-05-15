@@ -79,7 +79,6 @@ const blockFromElement = (el, defaultTextBlock, href) => {
 
   const discreet = el.querySelector('.discreet');
   if (discreet) {
-    console.log('this is a discreet block');
     raw = discreetBlock(el);
     return raw;
   }

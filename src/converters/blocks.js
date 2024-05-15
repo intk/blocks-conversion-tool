@@ -124,7 +124,6 @@ const buttonBlock = (elem) => {
 };
 
 const discreetBlock = (elem) => {
-  console.log('inside the discreet block');
   const block = {
     '@type': 'discreetBlock',
     text: elem.innerHTML,
