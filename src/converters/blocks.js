@@ -4,12 +4,14 @@ import { getYTVideoId } from '../helpers/video.js';
 const imageBlock = (elem, href) => {
   // strip /@@images/image if present
   const url = elem.src.split('/@@images')[0];
+  const caption = elem.getAttribute('caption');
 
   const block = {
     '@type': 'image',
     url,
     alt: elem.alt,
     title: elem.title,
+    caption: { data: caption },
   };
 
   if (href) {
