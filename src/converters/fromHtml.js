@@ -27,11 +27,18 @@ const parser = new DOMParser();
 const TEXT_NODE = 3;
 const COMMENT = 8;
 
-const elementsWithConverters = ['IMG', 'VIDEO', 'TABLE', 'IFRAME'];
+const elementsWithConverters = [
+  'IMG',
+  'VIDEO',
+  'TABLE',
+  'IFRAME',
+  'DISCREET',
+  'CALLOUT',
+  'BUTTONTEXT',
+];
 const elementsShouldHaveText = [
   'B',
   'BLOCKQUOTE',
-  'CALLOUT',
   'BODY',
   'CODE',
   'DEL',
@@ -72,28 +79,18 @@ const blockFromElement = (el, defaultTextBlock, href) => {
   }
   let raw = {};
 
-  let button = el.querySelector('.text-button');
-  if (button) {
-    console.log(button.className);
-    raw = buttonBlock(el);
-    return raw;
-  }
+  // let button = el.querySelector('.text-button');
+  // if (button) {
+  //   console.log(button.className);
+  //   raw = buttonBlock(el);
+  //   return raw;
+  // }
 
-  const parag = el.querySelector('p');
-  if (parag) {
-    const images = parag.querySelectorAll('img');
-    if (images.length > 0) {
-      console.log(images.length);
-      if (images.length > 1) {
-        console.log('found you');
-      }
-    }
-  }
-  const discreet = el.querySelector('.discreet');
-  if (discreet) {
-    raw = discreetBlock(el);
-    return raw;
-  }
+  // const discreet = el.querySelector('.discreet');
+  // if (discreet) {
+  //   raw = discreetBlock(el);
+  //   return raw;
+  // }
 
   switch (el.tagName) {
     case 'IMG':
@@ -110,6 +107,14 @@ const blockFromElement = (el, defaultTextBlock, href) => {
       break;
     case 'CALLOUT':
       raw = calloutBlock(el);
+      break;
+    case 'DISCREET':
+      console.log('discreet');
+      raw = discreetBlock(el);
+      break;
+    case 'BUTTONTEXT':
+      console.log('button');
+      raw = buttonBlock(el);
       break;
     default:
       raw = textBlock(el);
